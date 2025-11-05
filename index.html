@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- Created by pdf2htmlEX (https://github.com/pdf2htmlEX/pdf2htmlEX) -->
-<!-- TODO - refatorar e remover código não usado, padronizar atributos id e nome de variáveis em inglês e em camel case -->
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
 <head>
   <meta charset="utf-8"/>
@@ -188,10 +186,7 @@
   <link rel="shortcut icon" href="assets/img/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="./assets/css/style.css">
   <script src="./assets/js/frameworks/jquery.js" defer crossorigin="anonymous"></script>
-  <script src="./assets/js/frameworks/simple-mask-money.js" defer crossorigin="anonymous"></script>
-  <script src="./assets/js/frameworks/sweet-alert.js" defer crossorigin="anonymous"></script>
   <script src="./assets/js/frameworks/jquery-mask.js" defer crossorigin="anonymous"></script>
-  <script src="./assets/js/frameworks/moment.js" defer crossorigin="anonymous"></script>
   <script type="module" src="./assets/js/frameworks/moz.js" defer crossorigin="anonymous"></script>
   <script type="module" src="./assets/js/script.js" defer crossorigin="anonymous"></script>
   <script src="./assets/js/PDF2HTMLEx.js" crossorigin="anonymous"></script>
@@ -206,7 +201,7 @@
 <div id="page-container">
   <div id="controle">
     <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem">
-      <button class="btn-controle" data-action="editar" accesskey="e">Editar <kbd>Insert</kbd></button>
+      <button class="btn-controle" data-action="edit" accesskey="e">Editar <kbd>Insert</kbd></button>
       <button class="btn-impressao"><kbd>CTRL</kbd> + <kbd>P</kbd></button>
     </div>
   </div>
@@ -215,10 +210,10 @@
     <div style="padding: 3rem">
       <h1 style="text-align: center; font-family: 'Arial', sans-serif; font-size: 2.5rem">Procuração</h1><br/><br/><br/>
       <p style="font-family: 'Arial', sans-serif; line-height: 1.5; font-size: 1.5rem">
-        Eu, <b data-refer="rep_nome">{{nome}}</b>, inscrito no CPF n.º <b data-refer="CPF_1">{{CPF}}</b>, autorizo a empresa <b data-refer="rs_cca">{{nome}}</b>, inscrita no CNPJ n.º <b data-refer="rs_id">{{CNPJ}}</b>, correspondente bancário da Caixa Econômica Federal e intermediadora do meu processo de financiamento imobiliário, a solicitar e consultar o extrato atualizado do meu FGTS, podendo este ser fornecido pela instituição para fins de contratação de operação de crédito imobiliário.<br/><br/>
+        Eu, <b data-refer="representativeName">{{nome}}</b>, inscrito no CPF n.º <b data-refer="cpf">{{CPF}}</b>, autorizo a empresa <b data-refer="companyName">{{nome}}</b>, inscrita no CNPJ n.º <b data-refer="cnpj">{{CNPJ}}</b>, correspondente bancário da Caixa Econômica Federal e intermediadora do meu processo de financiamento imobiliário, a solicitar e consultar o extrato atualizado do meu FGTS, podendo este ser fornecido pela instituição para fins de contratação de operação de crédito imobiliário.<br/><br/>
         Declaro que a autorização junto à Caixa Econômica Federal já foi devidamente realizada por meio do aplicativo <b>Caixa Meu FGTS</b>.<br/><br/>
         Declaro, ainda, que a veracidade das informações prestadas é de minha inteira responsabilidade e que tenho ciência de que a prestação de informações falsas, incompletas ou incorretas poderá sujeitar-me às penalidades previstas no art. 299 do Código Penal.<br/><br/>
-        <span data-refer="cidade">{{cidade}}</span>, <span data-refer="data">{{data}}</span>
+        <span data-refer="city">{{cidade}}</span>, <span data-refer="signDate">{{data}}</span>
       </p>
     
     </div>
@@ -228,20 +223,20 @@
 <dialog id="modal-editar-informacoes" class="modal">
   <div class="modal-header">
     <h3>Editar informações</h3>
-    <button data-action="fechar-modal">&#10006;</button>
+    <button data-action="closeModal">&#10006;</button>
   </div>
   
   <div class="modal-body">
-    <form action="#" method="POST" data-action="formulario-editar-informacoes">
+    <form action="#" method="POST" data-action="editForm">
       <div class="group">
         <div class="form-group d-flex items-center flex-wrap gap-1">
           <div class="form-group">
-            <label for="cidade">Nome do cliente</label>
-            <input type="text" id="rep_nome" data-input="rep_nome" value="" required>
+            <label for="representativeName">Nome do cliente</label>
+            <input type="text" id="representativeName" name="representativeName" data-input="representativeName" value="" required>
           </div>
           <div class="area-validation-CPF">
-            <label for="CPF_1">CPF</label>
-            <input type="text" size="16" id="CPF_1" data-input="CPF_1" data-mascara="cpf" placeholder="000.000.000-00" maxlength="14" required>
+            <label for="cpf">CPF</label>
+            <input type="text" size="16" id="cpf" name="cpf" data-input="cpf" data-mask="cpf" placeholder="000.000.000-00" maxlength="14" required>
             <span class="icon-invalid-CPF" title="CPF inválido">&#10005;</span>
           </div>
           <br>
@@ -250,25 +245,25 @@
       
       <div class="group">
         <div class="form-group">
-          <label for="cidade">Cidade</label>
-          <input type="text" id="cidade" data-input="cidade" value="Belo Horizonte" required>
+          <label for="city">Cidade</label>
+          <input type="text" id="city" name="city" data-input="city" value="Belo Horizonte" required>
         </div>
         
         <div class="form-group">
-          <label for="data">Data de assinatura</label>
-          <input type="date" id="data" data-input="data" required>
-          <button class="btn-normal" type="button" data-action="update-sign-date" style="display: inline; width: min-content" tabindex="-1">Atualizar</button>
+          <label for="signDate">Data de assinatura</label>
+          <input type="date" id="signDate" name="signDate" data-input="signDate" required>
+          <button class="btn-normal" type="button" data-action="updateSignDate" style="display: inline; width: min-content" tabindex="-1">Atualizar</button>
         </div>
       </div>
       
       <div class="group">
         <div class="form-group">
-          <label for="rs_cca">Razão social do CCA</label>
-          <input type="text" id="rs_cca" data-input="rs_cca" required value="CHR DESPACHANTE IMOBILIARIO" placeholder="">
+          <label for="companyName">Razão social do CCA</label>
+          <input type="text" id="companyName" name="companyName" data-input="companyName" required value="CHR DESPACHANTE IMOBILIARIO" placeholder="">
         </div>
         <div class="form-group">
-          <label for="rs_id">CNPJ</label>
-          <input type="text" id="rs_id" data-input="rs_id" data-mascara="cnpj" required value="20.222.637/0001-30" placeholder="00.000.000/0000-00">
+          <label for="cnpj">CNPJ</label>
+          <input type="text" id="cnpj" name="cnpj" data-input="cnpj" data-mask="cnpj" required value="20.222.637/0001-30" placeholder="00.000.000/0000-00">
         </div>
         <br><br>
       </div>
