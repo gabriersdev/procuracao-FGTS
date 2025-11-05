@@ -1,3 +1,3 @@
-# Form Seguro Hab
+# Procuração Débito de FGTS
 
-Template para geração de formulários de Proposta de Seguro Habitacional para processos Habitacionais da Caixa Econômica Federal.
+Modelo para geração de documento de Procuração para Débito de FGTS para processos Habitacionais da Caixa Econômica Federal.
