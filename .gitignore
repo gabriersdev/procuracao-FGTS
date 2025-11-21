@@ -24,3 +24,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Todo List
+todo.txt
+
+# Changelog
+changelog.txt
+
+# Release Notes
+release-notes.txt
+
+# Roadmap
+roadmap.txt
+
+# Project Documentation
+documentation.txt
